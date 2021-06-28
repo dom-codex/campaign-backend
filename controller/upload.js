@@ -216,7 +216,10 @@ module.exports.uploader = async (req, res) => {
 };
 //generate flyer
 const generateFlyer = async (html) => {
-  const browser = await pup.launch();
+  const browser = await pup.launch({
+    headless: false,
+    args: ["--no-sandbox"],
+  });
   const page = await browser.newPage();
   await page.setContent(html);
   await page.setViewport({
