@@ -218,7 +218,7 @@ module.exports.uploader = async (req, res) => {
 const generateFlyer = async (html) => {
   const browser = await pup.launch({
     headless: true,
-    args: ["--no-sandbox"],
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
   await page.setContent(html);
