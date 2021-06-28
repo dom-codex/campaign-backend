@@ -157,7 +157,7 @@ const htmlCode = (port, name, file) => {
                 <div
                     class="campaign_img_cont">
                     <div class="img_cont">
-                        <img src="http://localhost:${4500}/${file}"
+                        <img src="http://localhost:${port}/${file}"
                             class="supporter"
                             alt="supporter picture" />
                     </div>
@@ -217,14 +217,14 @@ module.exports.uploader = async (req, res) => {
 //generate flyer
 const generateFlyer = async (html) => {
   const browser = await pup.launch({
-    headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    headless: false,
+    args: ["--no-sandbox"],
   });
   const page = await browser.newPage();
   await page.setContent(html);
   await page.setViewport({
-    height: 820,
-    width: 820,
+    height: 900,
+    width: 900,
   });
   const content = await page.content();
   const imgBuf = await page.screenshot({
